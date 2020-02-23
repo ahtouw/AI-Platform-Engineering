@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        html, body {
+            margin: 0;
+            height: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            text-align: center;
+        }
+        img {
+            width: 30%;
+            height: auto;
+        }
+    
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+    
+        header {
+            height: 100px;
+            background-color: #56b1b4;
+        }
+        form {
+            background-color: #56b1b4;
+        }
+    </style>
+    {% block style %}
+    {% endblock %}
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Heartbeat Project Client</h1>
+        <p>Upload an audio file and receive inference data</p>
+    </header>
+
+    <form action="/", method="POST", enctype="multipart/form-data">
+        <input type="file", name="audio", accept="audio/wav">
+        <input type="submit", name="action", value="Submit">
+    </form>
+    {% block result %}
+    {% endblock %}
+</body>
+</html>

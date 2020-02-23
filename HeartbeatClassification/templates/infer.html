@@ -1,0 +1,49 @@
+{% extends "index.html" %}
+
+{% block style %}
+<style>
+thead {
+    font-size: 125%;
+}
+table, th, td {
+    border: 1px solid black;
+}
+.bad{
+    font-size: 150%;
+    border: 3px solid red;
+    color: red;
+}
+.good{
+    font-size: 150%;
+    border: 3px solid green;
+    color: green;
+}
+</style>
+{% endblock %}
+
+{% block result %}
+    <table>
+        <thead>
+            <tr>
+                <th>Type of Heartbeat</th>
+                <th>Confidence</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if output == "Murmur" or output == "Extra Heart Sound" %}
+                <p class="bad">{{ output }} Detected</p>
+            {% elif output == "Artifact"%}
+                <p class="bad">{{ output }} Detected. Please retake test.</p>
+            {% else %}
+                <p class="good">Heartbeat is Normal</p>
+            {% endif %}
+
+            {% for item in result %}
+            <tr>
+                <th>{{ item }}</th>
+                <td>{{ ("%.3f"|format(result[item])) }}%</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table> 
+{% endblock %}
